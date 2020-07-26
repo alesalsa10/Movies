@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 const express = require('express');
 const axios = require('axios').default;
 const app = express();
-app.listen(process.env.PORT || 0.0.0.0);
+app.listen(process.env.PORT);
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: true }));
