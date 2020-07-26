@@ -1,0 +1,49 @@
+<%- include("partials/header") %>
+<div class="container mt-5">
+    <div class="card mb-3 mx-auto">
+        <div class="row no-gutters">
+            <div class="col-md-4">
+                <img src="<%= data['Poster'] %> " class="card-img h-100">
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h5 class="card-title"><%= data['Title'] %> </h5>
+                    <hr>
+                    <p class="lead"><%= data['Rated'] %> | <%= data['Runtime'] %> | <%= data['Genre']  %> |
+                        <% let type = data['Type'] %> <%= type.charAt(0).toUpperCase() + type.slice(1) %>
+                        (<%= data['Year'] %>) </p>
+                    <hr>
+                    <p class="card-text">
+                        <% let ratingsProviders = data['Ratings'].map(rate => rate['Source'] === 'Internet Movie Database' ? 'IMDb': rate['Source']) %>
+                    <div class="row">
+                        <% data['Ratings'].forEach(score => { %>
+                        <div class="col-4 text-center">
+                            <%= score['Value'] %>
+                        </div>
+                        <% }) %>
+                    </div>
+                    <div class="row">
+                        <% ratingsProviders.forEach(provider => { %>
+                        <div class="col-4 text-center">
+                            <% if (provider === 'IMDb') { %>
+                            <a href="https://www.imdb.com/title/<%= data['imdbID'] %> " target="_blank">IMDb</a>
+                            <% }  else {%>
+                                <%= provider %> 
+                           <% }%>
+                        </div>
+                        <% }) %>
+                    </div>
+                    </p>
+                    <hr>
+                    <p class="card-text px-4"><%= data['Plot'] %> <a href="https://www.youtube.com/results?search_query=<%= data['Title'] %>+trailer " target="_blank">Trailer</a></p>
+                    <hr>
+                    <p class="card-text px-4">
+                        Cast: <%= data['Actors'] %> <a href="https://www.imdb.com/title/<%= data['imdbID'] %>/fullcredits" target="_blank">Full cast</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<%- include("partials/footer") %>

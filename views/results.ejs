@@ -1,0 +1,21 @@
+<%- include("partials/header") %>
+<div class="container mt-5">
+    <div class="row mx-auto">
+        <% if (data['Search'] !== undefined) { %>
+            <% data['Search'].forEach(movie => { %>
+            <div class="col-sm col-md-6 col-lg-4 my-2">
+                <div class="card h-100" style="width: 18rem;">
+                    <a href="/info/<%= movie['Title'] %>"><img class="card-img-top" src=<%= movie['Poster'] %>
+                            alt="Card image cap"></a>
+                    <div class="card-body">
+                        <h5 class="card-title"><%= movie['Title'] %>: <%= movie['Year'] %> </h5>
+                    </div>
+                </div>
+            </div>
+            <% }) %>
+        <% } else { %>
+            <p class="lead">No movie or TV show matching that show found. Go <a href="/">home</a> and try again <a href="/"></a></p>
+        <% } %>
+    </div>
+</div>
+<%- include("partials/footer") %>

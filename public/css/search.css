@@ -1,0 +1,8 @@
+.card-img-top{
+    height: 45vw;
+    object-fit: cover;
+}
+
+body{
+    background-color: #AAAAAA;
+}
