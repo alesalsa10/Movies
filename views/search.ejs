@@ -1,21 +1,52 @@
-<%- include("partials/header") %> 
-<div class="container">
+<%- include("partials/header") %>
+<div class="container mt-5">
     <div class="row">
         <div class="col-10 mx-auto">
-            <h1 class="text-center py-4">Search for a movie</h1>
+            <h1 class="text-center py-4">Search for a movie or TV series</h1>
             <form action="/results" method="GET">
                 <div class="input-group">
-                    <input class="form-control" name="search" type="search" placeholder="Enter the name of a movie/show">
+                    <input class="form-control" name="search" type="search"
+                        placeholder="Enter the name of a movie/show">
                     <span class="input-group-append">
-                      <button class="btn btn-dark" type="submit">
-                          <i class="fa fa-search"></i>
-                      </button>
+                        <button class="btn btn-dark" type="submit">
+                            <i class="fa fa-search"></i>
+                        </button>
                     </span>
                 </div>
             </form>
         </div>
     </div>
-    
 </div>
-
+<div class="container my-5">
+    <div class="container">
+        <h3>Trending movies</h3>
+        <div class="card-deck">
+            <% movieData.results.forEach(movie => { %>
+            <div class="card m-2">
+                <a href="/info/<%= movie['original_title'] %>"><img class="card-img-top" id='index-img'
+                        src='https://image.tmdb.org/t/p/original<%=movie['poster_path'] %>' alt="Card image cap"></a>
+                <div class="card-body"  id='card-title'>
+                    <h5 class="card-title"><%= movie['original_title'] %></h5>
+                </div>
+            </div>
+            <% }) %>
+        </div>
+    </div>
+</div>
+<div class="container my-5">
+    <div class="container">
+        <h3>Trending TV series</h3>
+        <div class="card-deck">
+            <% tvData.results.forEach(show => { %>
+            <div class="card m-2">
+                <a href="/info/<%= show['original_name'] %>"><img class="card-img-top" id='index-img'
+                        src='https://image.tmdb.org/t/p/original<%=show['poster_path'] %>' alt="Card image cap"></a>
+                <div class="card-body"  id='card-title'>
+                    <h5 class="card-title"><%= show['original_name'] %></h5>
+                </div>
+            </div>
+            <% }) %>
+        </div>
+    </div>
+</div>
 <%- include("partials/footer") %>

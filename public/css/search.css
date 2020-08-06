@@ -1,8 +1,16 @@
-.card-img-top{
-    height: 45vw;
-    object-fit: cover;
-}
 
 body{
-    background-color: #edf2f2;
+    background-color: #9c9e9e;
+}
+
+#card-title{
+    height: 6rem;
+}
+
+#info{
+    margin-top: 5rem;
+}
+
+#results{
+    margin-top: 5rem;
 }
