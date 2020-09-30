@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 const express = require('express');
 const axios = require('axios').default;
 const app = express();
-app.listen(process.env.PORT);
+app.listen(process.env.PORT || 3000);
 //app.listen(3000);
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
