@@ -1,17 +1,29 @@
 <%- include("partials/header") %>
 <div class="container" id="results">
     <div class="row mx-auto">
-        <% if (data['Search'] !== undefined) { %>
-            <% data['Search'].forEach(movie => { %>
-            <div class="col-sm col-md-6 col-lg-4 my-2">
-                <div class="card h-100" style="width: 18rem;">
-                    <a href="/info/<%= movie['Title'] %>"><img class="card-img-top" id="img" src=<%= movie['Poster'] %>
-                            alt="Card image cap"></a>
-                    <div class="card-body">
-                        <h5 class="card-title"><%= movie['Title'] %>: <%= movie['Year'] %> </h5>
+        <% if (data['results'] !== undefined) { %>
+            <% data['results'].forEach(movie => { %>
+                <% if (movie['media_type'] === 'movie') { %>
+                    <div class="col-sm col-md-6 col-lg-4 my-2">
+                        <div class="card h-100" style="width: 18rem;">
+                            <a href="/info/<%= movie['original_title'] %>"><img class="card-img-top" id="img" src='https://image.tmdb.org/t/p/original<%=movie['poster_path'] %>'
+                                    alt="Card image cap"></a>
+                            <div class="card-body">
+                                <h5 class="card-title"><%= movie['original_title'] %>: <%= movie['release_date'] %> </h5>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
+                    <% } else { %>
+                        <div class="col-sm col-md-6 col-lg-4 my-2">
+                            <div class="card h-100" style="width: 18rem;">
+                                <a href="/info/<%= movie['original_name'] %>"><img class="card-img-top" id="img" src='https://image.tmdb.org/t/p/original<%=movie['poster_path'] %>'
+                                        alt="Card image cap"></a>
+                                <div class="card-body">
+                                    <h5 class="card-name"><%= movie['original_name'] %> </h5>
+                                </div>
+                            </div>
+                        </div>
+                    <% } %> 
             <% }) %>
         <% } else { %>
             <p class="lead">No movie or TV show matching that show found. Go <a href="/">home</a> and try again <a href="/"></a></p>
